@@ -1,6 +1,6 @@
 let timer; 
 let isRunning = false; 
-let timeLeft = 25 * 60; 
+let timeLeft = 25 * 60;
 
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
@@ -17,39 +17,41 @@ function updateTimer() {
   timerDisplay.textContent = formatTime(timeLeft);
 }
 
-function startStopTimer() {
+function startTimer() {
+  updateTimeLeft();
+  updateTimer();
+
+  timer = setInterval(() => {
+    if (timeLeft > 0) {
+      timeLeft--;
+      updateTimer();
+    } else {
+      clearInterval(timer);
+      alert('Le temps est écoulé !');
+      startButton.textContent = 'Démarrer';
+    }
+  }, 1000);
+  startButton.textContent = 'Redémarrer';
+  isRunning = true;
+}
+
+function updateTimeLeft() {
+  timeLeft = modeSwitch.checked ? 5 * 60 : 25 * 60;
+}
+
+modeSwitch.addEventListener('change', () => {
+  updateTimeLeft();
+  updateTimer();
+});
+
+startButton.addEventListener('click', () => {
   if (isRunning) {
     clearInterval(timer);
     startButton.textContent = 'Démarrer';
+    isRunning = false;
   } else {
-    timer = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        updateTimer();
-      } else {
-        clearInterval(timer);
-        alert('Le temps est écoulé !');
-        timeLeft = 25 * 60; 
-        updateTimer();
-        startButton.textContent = 'Démarrer';
-      }
-    }, 1000);
-    startButton.textContent = 'Arrêter';
+    startTimer();
   }
-  isRunning = !isRunning; 
-}
-
-function resetTimer() {
-  clearInterval(timer);
-  isRunning = false;
-  timeLeft = 25 * 60; 
-  updateTimer();
-  startButton.textContent = 'Démarrer';
-}
-
-startButton.addEventListener('click', startStopTimer);
-modeSwitch.addEventListener('change', () => {
-  modeLabel.textContent = modeSwitch.checked ? 'Repos' : 'Travail';
 });
 
 updateTimer();
