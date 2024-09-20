@@ -1,0 +1,102 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: red; /* Fond rouge */
+  color: white; /* Couleur du texte blanche */
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style pour le timer */
+#timer {
+  width: 150px; /* Largeur du cercle */
+  height: 150px; /* Hauteur du cercle */
+  border: 10px solid white; /* Bord blanc */
+  border-radius: 50%; /* Pour faire un cercle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem; /* Taille du texte du timer */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ombre */
+  margin: 20px 0; /* Espacement vertical */
+}
+
+button {
+  background-color: white; /* Fond du bouton blanc */
+  color: red; /* Texte rouge */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem; /* Taille de police du bouton */
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.8); /* Effet au survol */
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 20px; /* Espacement sous le switch */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white; /* Fond du slider */
+  transition: .4s;
+  border-radius: 34px; /* Coins arrondis */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: red; /* Couleur du bouton du slider */
+  transition: .4s;
+  border-radius: 50%; /* Cercle */
+}
+
+/* Si le switch est activé */
+input:checked + .slider {
+  background-color: white;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px); /* Déplacement du bouton du slider */
+}
