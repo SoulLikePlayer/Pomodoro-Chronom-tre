@@ -1,24 +1,51 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft =25 * 60;
+let timeLeft;
 
+// Sélection des éléments DOM
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
 const modeLabel = document.getElementById('mode-label');
 const workSound = document.getElementById('work-sound');
 const restSound = document.getElementById('rest-sound');
+const workDurationInput = document.getElementById('work-duration');
+const restDurationInput = document.getElementById('rest-duration');
+const settingsForm = document.getElementById('settings-form');
 
+// Valeurs par défaut pour le travail et le repos
+const defaultWorkDuration = 25; // 25 minutes
+const defaultRestDuration = 5;  // 5 minutes
+
+// Charger les durées du localStorage ou utiliser les valeurs par défaut
+function loadSettings() {
+  const savedWorkDuration = localStorage.getItem('workDuration');
+  const savedRestDuration = localStorage.getItem('restDuration');
+
+  // Si localStorage est vide, utiliser les valeurs par défaut
+  workDurationInput.value = savedWorkDuration ? savedWorkDuration : defaultWorkDuration;
+  restDurationInput.value = savedRestDuration ? savedRestDuration : defaultRestDuration;
+}
+
+// Sauvegarder les paramètres dans localStorage
+function saveSettings() {
+  localStorage.setItem('workDuration', workDurationInput.value);
+  localStorage.setItem('restDuration', restDurationInput.value);
+}
+
+// Formatage du temps
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
+// Mise à jour de l'affichage du chronomètre
 function updateTimer() {
   timerDisplay.textContent = formatTime(timeLeft);
 }
 
+// Changement de mode Travail / Repos
 function switchMode() {
   isWorkMode = !isWorkMode;
   updateTimeLeft();
@@ -39,6 +66,7 @@ function switchMode() {
   }
 }
 
+// Démarrage du chronomètre
 function startTimer() {
   timer = setInterval(() => {
     if (timeLeft > 0) {
@@ -54,6 +82,7 @@ function startTimer() {
   isRunning = true;
 }
 
+// Réinitialisation du chronomètre
 function resetTimer() {
   clearInterval(timer);
   isRunning = false;
@@ -64,10 +93,14 @@ function resetTimer() {
   timerDisplay.style.backgroundColor = 'red';
 }
 
+// Mise à jour du temps restant en fonction du mode
 function updateTimeLeft() {
-  timeLeft = isWorkMode ? 25 * 60: 5 * 60;
+  const workDuration = parseInt(workDurationInput.value, 10) * 60;
+  const restDuration = parseInt(restDurationInput.value, 10) * 60;
+  timeLeft = isWorkMode ? workDuration : restDuration;
 }
 
+// Gestion du clic sur le bouton démarrer
 startButton.addEventListener('click', () => {
   if (isRunning) {
     resetTimer();
@@ -78,4 +111,14 @@ startButton.addEventListener('click', () => {
   }
 });
 
+// Gestion de la soumission du formulaire
+settingsForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  saveSettings();
+  updateTimeLeft();
+  updateTimer();
+});
+
+// Charger les paramètres à l'ouverture de la page
+loadSettings();
 updateTimer();
