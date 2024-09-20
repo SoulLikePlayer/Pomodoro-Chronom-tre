@@ -1,7 +1,7 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft = 30;
+let timeLeft = 25 * 60;
 
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
@@ -22,10 +22,16 @@ function updateTimer() {
 function switchMode() {
   isWorkMode = !isWorkMode;
   updateTimeLeft();
-  modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
+  const modeContainer = document.getElementById('mode-container');
+  const modeIcon = document.getElementById('mode-icon');
+  modeContainer.classList.add('fade-out');
+  setTimeout(() => {
+    modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
+    modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
+    modeContainer.classList.remove('fade-out');
+    modeContainer.classList.add('fade-in');
+  }, 500);
   timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
-  
-  // Joue le son de transition
   if (isWorkMode) {
     workSound.play();
   } else {
