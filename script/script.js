@@ -1,7 +1,7 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft = 25 * 60;
+let timeLeft =25 * 60;
 
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
@@ -50,7 +50,7 @@ function startTimer() {
       startTimer();
     }
   }, 1000);
-  startButton.innerHTML = '<i class="fas fa-redo"></i> Réinitialiser';
+  startButton.innerHTML = '<span class="fas fa-redo" aria-hidden="true"></span>';
   isRunning = true;
 }
 
@@ -60,12 +60,12 @@ function resetTimer() {
   isWorkMode = true;
   updateTimeLeft();
   updateTimer();
-  startButton.innerHTML = '<i class="fas fa-play"></i> Démarrer';
+  startButton.innerHTML = '<span class="fas fa-play" aria-hidden="true"></span>';
   timerDisplay.style.backgroundColor = 'red';
 }
 
 function updateTimeLeft() {
-  timeLeft = isWorkMode ? 30 : 10;
+  timeLeft = isWorkMode ? 25 * 60: 5 * 60;
 }
 
 startButton.addEventListener('click', () => {

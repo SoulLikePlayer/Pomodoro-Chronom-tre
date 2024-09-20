@@ -14,15 +14,15 @@
     <h1>TIMER POMODORO</h1>
   </header>
   <main>
-    <div id="mode-container">
-      <i id="mode-icon" class="fas fa-briefcase"></i>
-      <span id="mode-label">Travail</span>
+    <div id="mode-container" role="alert">
+      <i id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></i>
+      <span id="mode-label" aria-live="polite">Travail</span>
     </div>
-    <div id="timer" aria-live="polite"></div>
-    <button id="start-button"><i class="fas fa-play"></i> Démarrer</button>
+    <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre"></div>
+    <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre"><span class="fas fa-play" aria-hidden="true"></span></button>
   </main>
-  <audio id="work-sound" src="sounds/work.mp3" preload="auto"></audio>
-  <audio id="rest-sound" src="sounds/rest.mp3" preload="auto"></audio>
+  <audio id="work-sound" src="sounds/work.mp3" preload="auto" aria-hidden="true"></audio>
+  <audio id="rest-sound" src="sounds/rest.mp3" preload="auto" aria-hidden="true"></audio>
   <script src="script/script.js"></script>
 </body>
 </html>
