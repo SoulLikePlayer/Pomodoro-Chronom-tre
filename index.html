@@ -6,6 +6,8 @@
   <meta name="description" content="Pomodoro Timer - Un minuteur pour améliorer la productivité avec des cycles de travail et de pause.">
   <title>TIMER POMODORO</title>
   <link rel="stylesheet" href="style/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header>
@@ -14,8 +16,10 @@
   <main>
     <span id="mode-label">Travail</span>
     <div id="timer" aria-live="polite"></div>
-    <button id="start-button">Démarrer</button>
+    <button id="start-button"><i class="fas fa-play"></i> Démarrer</button>
   </main>
+  <audio id="work-sound" src="sounds/work.mp3" preload="auto"></audio>
+  <audio id="rest-sound" src="sounds/rest.mp3" preload="auto"></audio>
   <script src="script/script.js"></script>
 </body>
 </html>

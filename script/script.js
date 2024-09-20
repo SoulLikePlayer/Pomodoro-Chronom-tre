@@ -1,15 +1,13 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft = 1 * 60;
+let timeLeft = 30;
 
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
 const modeLabel = document.getElementById('mode-label');
-const timerCircle = document.createElement('div');
-
-timerCircle.className = 'timer-circle';
-timerDisplay.appendChild(timerCircle);
+const workSound = document.getElementById('work-sound');
+const restSound = document.getElementById('rest-sound');
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
@@ -18,7 +16,7 @@ function formatTime(seconds) {
 }
 
 function updateTimer() {
-  timerDisplay.firstChild.textContent = formatTime(timeLeft);
+  timerDisplay.textContent = formatTime(timeLeft);
 }
 
 function switchMode() {
@@ -26,6 +24,13 @@ function switchMode() {
   updateTimeLeft();
   modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
   timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
+  
+  // Joue le son de transition
+  if (isWorkMode) {
+    workSound.play();
+  } else {
+    restSound.play();
+  }
 }
 
 function startTimer() {
@@ -39,7 +44,7 @@ function startTimer() {
       startTimer();
     }
   }, 1000);
-  startButton.textContent = 'Réinitialiser';
+  startButton.innerHTML = '<i class="fas fa-redo"></i> Réinitialiser';
   isRunning = true;
 }
 
@@ -49,12 +54,12 @@ function resetTimer() {
   isWorkMode = true;
   updateTimeLeft();
   updateTimer();
-  startButton.textContent = 'Démarrer';
+  startButton.innerHTML = '<i class="fas fa-play"></i> Démarrer';
   timerDisplay.style.backgroundColor = 'red';
 }
 
 function updateTimeLeft() {
-  timeLeft = isWorkMode ? 1 * 60 : 30;
+  timeLeft = isWorkMode ? 30 : 10;
 }
 
 startButton.addEventListener('click', () => {
