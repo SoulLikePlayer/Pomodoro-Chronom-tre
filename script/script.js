@@ -6,6 +6,10 @@ const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
 const modeSwitch = document.getElementById('mode-switch');
 const modeLabel = document.getElementById('mode-label');
+const timerCircle = document.createElement('div');
+
+timerCircle.className = 'timer-circle';
+timerDisplay.appendChild(timerCircle);
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
@@ -14,7 +18,10 @@ function formatTime(seconds) {
 }
 
 function updateTimer() {
-  timerDisplay.textContent = formatTime(timeLeft);
+  timerDisplay.firstChild.textContent = formatTime(timeLeft);
+  const percentage = timeLeft / (modeSwitch.checked ? 5 * 60 : 25 * 60);
+  const rotation = percentage * 360;
+  timerCircle.style.transform = `rotate(${rotation}deg)`;
 }
 
 function startTimer() {

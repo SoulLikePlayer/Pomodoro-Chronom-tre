@@ -9,7 +9,6 @@ body {
   background-color: red; /* Fond rouge */
   color: white; /* Couleur du texte blanche */
   font-family: Arial, sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -39,6 +38,11 @@ main {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ombre */
   margin: 20px 0; /* Espacement vertical */
 }
+
+#timer {
+  transition: transform 0.5s ease;
+}
+
 
 button {
   background-color: white; /* Fond du bouton blanc */
@@ -105,3 +109,5 @@ input:checked + .slider:before {
 .slider {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Ombre légère */
 }
+
+
