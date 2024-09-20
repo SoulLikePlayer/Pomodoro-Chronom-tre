@@ -5,14 +5,14 @@
 }
 
 body {
-  background-color: #ff5733; /* Couleur de fond */
+  background-color: #ff5733;
   color: white;
   font-family: 'Roboto', sans-serif;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   text-align: center;
-  transition: background-color 0.5s ease; /* Animation de changement de couleur */
+  transition: background-color 0.5s ease;
+  display: grid;
+  place-items: center;
 }
 
 h1 {
@@ -20,57 +20,45 @@ h1 {
   font-weight: 700;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#mode-container {
+  margin-bottom: 20px;
+  transition: opacity 0.5s ease;
+}
+
+#mode-icon {
+  margin-right: 10px;
+  font-size: 2rem;
+  transition: transform 0.5s ease;
 }
 
 #timer {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   border: 10px solid white;
   border-radius: 50%;
+  background-color: red;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  margin: 20px 0;
-  background-color: red;
-  transition: background-color 0.5s ease; /* Animation de changement de couleur */
+  font-size: 5rem;
+  transition: background-color 0.5s ease;
 }
 
 button {
   background-color: white;
   color: red;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease; /* Animation de bouton */
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: rgba(255, 255, 255, 0.8);
-}
-
-.timer-circle {
-  transition: transform 1s ease; /* Animation de la transition */
-}
-
-#mode-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  transition: opacity 0.5s ease; 
-}
-
-#mode-icon {
-  margin-right: 10px;
-  font-size: 1.5rem;
-  transition: transform 0.5s ease; 
 }
 
 .fade-out {
@@ -79,4 +67,38 @@ button:hover {
 
 .fade-in {
   opacity: 1;
+}
+
+@media (max-width: 600px) {
+  #timer {
+    width: 200px;
+    height: 200px;
+    font-size: 3rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  #mode-icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 601px) {
+  #timer {
+    width: 350px;
+    height: 350px;
+    font-size: 6rem;
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+  }
+
+  #mode-icon {
+    font-size: 2rem;
+  }
 }
