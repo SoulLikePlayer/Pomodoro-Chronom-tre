@@ -1,10 +1,10 @@
-let timer; 
-let isRunning = false; 
-let timeLeft = 25 * 60;
+let timer;
+let isRunning = false;
+let isWorkMode = true;
+let timeLeft = 1 * 60;
 
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
-const modeSwitch = document.getElementById('mode-switch');
 const modeLabel = document.getElementById('mode-label');
 const timerCircle = document.createElement('div');
 
@@ -19,9 +19,13 @@ function formatTime(seconds) {
 
 function updateTimer() {
   timerDisplay.firstChild.textContent = formatTime(timeLeft);
-  const percentage = timeLeft / (modeSwitch.checked ? 5 * 60 : 25 * 60);
-  const rotation = percentage * 360;
-  timerCircle.style.transform = `rotate(${rotation}deg)`;
+}
+
+function switchMode() {
+  isWorkMode = !isWorkMode;
+  updateTimeLeft();
+  modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
+  timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
 }
 
 function startTimer() {
@@ -31,34 +35,27 @@ function startTimer() {
       updateTimer();
     } else {
       clearInterval(timer);
-      alert('Le temps est écoulé !');
-      startButton.textContent = 'Démarrer';
-      isRunning = false;
+      switchMode();
+      startTimer();
     }
   }, 1000);
-  startButton.textContent = 'Redémarrer';
+  startButton.textContent = 'Réinitialiser';
   isRunning = true;
 }
 
 function resetTimer() {
   clearInterval(timer);
   isRunning = false;
+  isWorkMode = true;
   updateTimeLeft();
   updateTimer();
   startButton.textContent = 'Démarrer';
+  timerDisplay.style.backgroundColor = 'red';
 }
 
 function updateTimeLeft() {
-  timeLeft = modeSwitch.checked ? 5 * 60 : 25 * 60;
+  timeLeft = isWorkMode ? 1 * 60 : 30;
 }
-
-modeSwitch.addEventListener('change', () => {
-  updateTimeLeft();
-  if (!isRunning) {
-    updateTimer();
-  }
-  modeLabel.textContent = modeSwitch.checked ? 'Repos' : 'Travail';
-});
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
