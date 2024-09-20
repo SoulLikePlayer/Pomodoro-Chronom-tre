@@ -1,4 +1,3 @@
-
 let timer; 
 let isRunning = false; 
 let timeLeft = 25 * 60; 
@@ -50,7 +49,7 @@ function resetTimer() {
 
 startButton.addEventListener('click', startStopTimer);
 modeSwitch.addEventListener('change', () => {
-  modeLabel.textContent = modeSwitch.checked ? 'Pause' : 'Travail';
+  modeLabel.textContent = modeSwitch.checked ? 'Repos' : 'Travail';
 });
 
 updateTimer();
