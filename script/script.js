@@ -18,9 +18,6 @@ function updateTimer() {
 }
 
 function startTimer() {
-  updateTimeLeft();
-  updateTimer();
-
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -29,10 +26,19 @@ function startTimer() {
       clearInterval(timer);
       alert('Le temps est écoulé !');
       startButton.textContent = 'Démarrer';
+      isRunning = false;
     }
   }, 1000);
   startButton.textContent = 'Redémarrer';
   isRunning = true;
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  isRunning = false;
+  updateTimeLeft();
+  updateTimer();
+  startButton.textContent = 'Démarrer';
 }
 
 function updateTimeLeft() {
@@ -41,15 +47,18 @@ function updateTimeLeft() {
 
 modeSwitch.addEventListener('change', () => {
   updateTimeLeft();
-  updateTimer();
+  if (!isRunning) {
+    updateTimer();
+  }
+  modeLabel.textContent = modeSwitch.checked ? 'Repos' : 'Travail';
 });
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
-    clearInterval(timer);
-    startButton.textContent = 'Démarrer';
-    isRunning = false;
+    resetTimer();
   } else {
+    updateTimeLeft();
+    updateTimer();
     startTimer();
   }
 });
