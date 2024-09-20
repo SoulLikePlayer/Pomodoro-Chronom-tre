@@ -100,3 +100,8 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px); /* Déplacement du bouton du slider */
 }
+
+/* Ajout d'un effet au slider */
+.slider {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Ombre légère */
+}
