@@ -1,7 +1,7 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft;
+let timeLeft; // On l'initialise plus tard dans le code
 
 // Sélection des éléments DOM
 const timerDisplay = document.getElementById('timer');
@@ -119,6 +119,7 @@ settingsForm.addEventListener('submit', (event) => {
   updateTimer();
 });
 
-// Charger les paramètres à l'ouverture de la page
+// Charger les paramètres et initialiser le chronomètre à l'ouverture de la page
 loadSettings();
-updateTimer();
+updateTimeLeft();  // Initialisation correcte de timeLeft
+updateTimer();     // Mise à jour correcte de l'affichage du chronomètre
