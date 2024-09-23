@@ -1,73 +1,79 @@
 let timer;
 let isRunning = false;
 let isWorkMode = true;
-let timeLeft; // On l'initialise plus tard dans le code
+let timeLeft; // Initialisé plus tard
 
 // Sélection des éléments DOM
-const timerDisplay = document.getElementById('timer');
-const startButton = document.getElementById('start-button');
-const modeLabel = document.getElementById('mode-label');
-const workSound = document.getElementById('work-sound');
-const restSound = document.getElementById('rest-sound');
-const workDurationInput = document.getElementById('work-duration');
-const restDurationInput = document.getElementById('rest-duration');
-const settingsForm = document.getElementById('settings-form');
+const DOM = {
+  timerDisplay: document.getElementById('timer'),
+  startButton: document.getElementById('start-button'),
+  modeLabel: document.getElementById('mode-label'),
+  workSound: document.getElementById('work-sound'),
+  restSound: document.getElementById('rest-sound'),
+  workDurationInput: document.getElementById('work-duration'),
+  restDurationInput: document.getElementById('rest-duration'),
+  settingsForm: document.getElementById('settings-form'),
+  modeContainer: document.getElementById('mode-container'),
+  modeIcon: document.getElementById('mode-icon')
+};
 
 // Valeurs par défaut pour le travail et le repos
-const defaultWorkDuration = 25; // 25 minutes
-const defaultRestDuration = 5;  // 5 minutes
+const DEFAULTS = {
+  workDuration: 25,  // 25 minutes
+  restDuration: 5    // 5 minutes
+};
 
 // Charger les durées du localStorage ou utiliser les valeurs par défaut
-function loadSettings() {
-  const savedWorkDuration = localStorage.getItem('workDuration');
-  const savedRestDuration = localStorage.getItem('restDuration');
-
-  // Si localStorage est vide, utiliser les valeurs par défaut
-  workDurationInput.value = savedWorkDuration ? savedWorkDuration : defaultWorkDuration;
-  restDurationInput.value = savedRestDuration ? savedRestDuration : defaultRestDuration;
-}
+const loadSettings = () => {
+  DOM.workDurationInput.value = localStorage.getItem('workDuration') || DEFAULTS.workDuration;
+  DOM.restDurationInput.value = localStorage.getItem('restDuration') || DEFAULTS.restDuration;
+};
 
 // Sauvegarder les paramètres dans localStorage
-function saveSettings() {
-  localStorage.setItem('workDuration', workDurationInput.value);
-  localStorage.setItem('restDuration', restDurationInput.value);
-}
+const saveSettings = () => {
+  localStorage.setItem('workDuration', DOM.workDurationInput.value);
+  localStorage.setItem('restDuration', DOM.restDurationInput.value);
+};
 
 // Formatage du temps
-function formatTime(seconds) {
+const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-}
+};
 
 // Mise à jour de l'affichage du chronomètre
-function updateTimer() {
-  timerDisplay.textContent = formatTime(timeLeft);
-}
+const updateTimer = () => DOM.timerDisplay.textContent = formatTime(timeLeft);
 
-// Changement de mode Travail / Repos
-function switchMode() {
+// Calculer la durée en secondes selon le mode
+const getCurrentDuration = () => {
+  return (isWorkMode ? DOM.workDurationInput.value : DOM.restDurationInput.value) * 60;
+};
+
+// Changer le mode (Travail / Repos) et jouer le son
+const switchMode = () => {
   isWorkMode = !isWorkMode;
-  updateTimeLeft();
-  const modeContainer = document.getElementById('mode-container');
-  const modeIcon = document.getElementById('mode-icon');
-  modeContainer.classList.add('fade-out');
-  setTimeout(() => {
-    modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
-    modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
-    modeContainer.classList.remove('fade-out');
-    modeContainer.classList.add('fade-in');
-  }, 500);
-  timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
-  if (isWorkMode) {
-    workSound.play();
-  } else {
-    restSound.play();
-  }
-}
+  timeLeft = getCurrentDuration();
+  updateModeDisplay();
+  updateTimer();
+};
 
-// Démarrage du chronomètre
-function startTimer() {
+// Mise à jour de l'affichage du mode et animation
+const updateModeDisplay = () => {
+  const { modeContainer, modeIcon, timerDisplay } = DOM;
+  modeContainer.classList.toggle('fade-out');
+
+  setTimeout(() => {
+    DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
+    modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
+    modeContainer.classList.toggle('fade-in');
+    timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
+    (isWorkMode ? DOM.workSound : DOM.restSound).play();
+  }, 500);
+};
+
+// Démarrer le chronomètre
+const startTimer = () => {
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -78,48 +84,38 @@ function startTimer() {
       startTimer();
     }
   }, 1000);
-  startButton.innerHTML = '<span class="fas fa-redo" aria-hidden="true"></span>';
+  DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
-}
+};
 
-// Réinitialisation du chronomètre
-function resetTimer() {
+// Réinitialiser le chronomètre
+const resetTimer = () => {
   clearInterval(timer);
   isRunning = false;
   isWorkMode = true;
-  updateTimeLeft();
+  timeLeft = getCurrentDuration();
   updateTimer();
-  startButton.innerHTML = '<span class="fas fa-play" aria-hidden="true"></span>';
-  timerDisplay.style.backgroundColor = 'red';
-}
+  DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
+  DOM.timerDisplay.style.backgroundColor = 'red';
+};
 
-// Mise à jour du temps restant en fonction du mode
-function updateTimeLeft() {
-  const workDuration = parseInt(workDurationInput.value, 10) * 60;
-  const restDuration = parseInt(restDurationInput.value, 10) * 60;
-  timeLeft = isWorkMode ? workDuration : restDuration;
-}
-
-// Gestion du clic sur le bouton démarrer
-startButton.addEventListener('click', () => {
-  if (isRunning) {
-    resetTimer();
-  } else {
-    updateTimeLeft();
-    updateTimer();
-    startTimer();
-  }
+// Gestion du bouton de démarrage
+DOM.startButton.addEventListener('click', () => {
+  isRunning ? resetTimer() : startTimer();
 });
 
 // Gestion de la soumission du formulaire
-settingsForm.addEventListener('submit', (event) => {
+DOM.settingsForm.addEventListener('submit', (event) => {
   event.preventDefault();
   saveSettings();
-  updateTimeLeft();
-  updateTimer();
+  resetTimer();  // Réinitialise et applique les nouvelles durées
 });
 
-// Charger les paramètres et initialiser le chronomètre à l'ouverture de la page
-loadSettings();
-updateTimeLeft();  // Initialisation correcte de timeLeft
-updateTimer();     // Mise à jour correcte de l'affichage du chronomètre
+// Initialisation à l'ouverture de la page
+const initialize = () => {
+  loadSettings();
+  resetTimer();
+};
+
+// Charger les paramètres et initialiser le chronomètre
+initialize();
