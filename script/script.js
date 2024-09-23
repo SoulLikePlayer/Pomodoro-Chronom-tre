@@ -23,8 +23,8 @@ const DOM = {
 
 // Valeurs par défaut pour le travail et le repos
 const DEFAULTS = {
-  workDuration: 60,  // 60 minutes par défaut
-  restDuration: 10    // 10 minutes par défaut
+  workDuration: 25,  
+  restDuration: 5
 };
 
 // Charger les durées du localStorage ou utiliser les valeurs par défaut
