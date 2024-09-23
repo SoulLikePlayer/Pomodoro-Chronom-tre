@@ -14,26 +14,31 @@
     <h1>TIMER POMODORO</h1>
   </header>
   <main>
-    <div id="mode-container" role="alert">
-      <i id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></i>
-      <span id="mode-label" aria-live="polite">Travail</span>
-    </div>
-    <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre"></div>
+    <section>
+      <div id="mode-container" role="alert" aria-live="assertive">
+        <i id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></i>
+        <span id="mode-label">Travail</span>
+      </div>
+      <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre">00:00</div>
+    </section>
 
-    <!-- Formulaire pour définir les durées -->
-    <form id="settings-form">
-      <label for="work-duration">Durée du travail (minutes):</label>
-      <input type="number" id="work-duration" name="work-duration" min="1" value="25">
-      
-      <label for="rest-duration">Durée de la pause (minutes):</label>
-      <input type="number" id="rest-duration" name="rest-duration" min="1" value="5">
-      
-      <button type="submit">Enregistrer</button>
-    </form>
+    <section>
+      <form id="settings-form">
+        <label for="work-duration">Durée du travail (minutes):</label>
+        <input type="number" id="work-duration" name="work-duration" min="1" value="25">
+        
+        <label for="rest-duration">Durée de la pause (minutes):</label>
+        <input type="number" id="rest-duration" name="rest-duration" min="1" value="5">
+        
+        <button type="submit">Enregistrer</button>
+      </form>
+    </section>
 
-    <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre">
-      <span class="fas fa-play" aria-hidden="true"></span>
-    </button>
+    <section>
+      <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre">
+        <span class="fas fa-play" aria-hidden="true"></span>
+      </button>
+    </section>
   </main>
   
   <audio id="work-sound" src="sounds/work.mp3" preload="auto" aria-hidden="true"></audio>
