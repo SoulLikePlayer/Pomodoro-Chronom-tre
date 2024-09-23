@@ -14,7 +14,11 @@ const DOM = {
   restDurationInput: document.getElementById('rest-duration'),
   settingsForm: document.getElementById('settings-form'),
   modeContainer: document.getElementById('mode-container'),
-  modeIcon: document.getElementById('mode-icon')
+  modeIcon: document.getElementById('mode-icon'),
+  prevButton: document.getElementById('prev-button'),
+  nextButton: document.getElementById('next-button'),
+  timerSection: document.getElementById('timer-section'),
+  settingsSection: document.getElementById('settings-section')
 };
 
 // Valeurs par défaut pour le travail et le repos
@@ -66,9 +70,9 @@ const updateModeDisplay = () => {
   setTimeout(() => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
-    modeContainer.classList.toggle('fade-in');
     timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
     (isWorkMode ? DOM.workSound : DOM.restSound).play();
+    modeContainer.classList.toggle('fade-in');
   }, 500);
 };
 
@@ -99,6 +103,27 @@ const resetTimer = () => {
   DOM.timerDisplay.style.backgroundColor = 'red';
 };
 
+// Gestion des boutons de navigation
+let currentSectionIndex = 0;
+const sections = [DOM.timerSection, DOM.settingsSection];
+
+const updateCarousel = () => {
+  sections.forEach((section, index) => {
+    section.style.display = index === currentSectionIndex ? 'block' : 'none';
+  });
+};
+
+// Gestion des clics sur les boutons de navigation
+DOM.prevButton.addEventListener('click', () => {
+  currentSectionIndex = (currentSectionIndex === 0) ? sections.length - 1 : currentSectionIndex - 1;
+  updateCarousel();
+});
+
+DOM.nextButton.addEventListener('click', () => {
+  currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+  updateCarousel();
+});
+
 // Gestion du bouton de démarrage
 DOM.startButton.addEventListener('click', () => {
   isRunning ? resetTimer() : startTimer();
@@ -115,6 +140,7 @@ DOM.settingsForm.addEventListener('submit', (event) => {
 const initialize = () => {
   loadSettings();
   resetTimer();
+  updateCarousel();  // Afficher la section par défaut
 };
 
 // Charger les paramètres et initialiser le chronomètre
