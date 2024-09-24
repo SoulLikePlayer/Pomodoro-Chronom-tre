@@ -5,7 +5,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #b91c1c, #f80101); /* Dégradé rouge foncé à rouge vif */
+  background: linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373);
   color: #fff;
   font-family: 'Roboto', sans-serif;
   height: 100vh;
@@ -171,7 +171,7 @@ button[type="submit"]:active {
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #b91c1c, #f80101); /* Dégradé rouge foncé à rouge vif */
+  background: linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373);
   margin: 15% auto;
   padding: 20px;
   width: 300px;
