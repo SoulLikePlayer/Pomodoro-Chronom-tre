@@ -38,42 +38,27 @@ h1 {
   height: 22.786vw;
   border: 0.651vw solid #fff;
   border-radius: 50%;
-  background: #b91c1c; /* Couleur de fond par défaut */
+  background: #b91c1c;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4.167vw !important;
   margin-bottom: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.5s, transform 0.5s;
 }
 
-#timer.active {
-  animation: pulse 1.5s infinite;
+.heartbeat {
+  animation: heartbeat 1.5s infinite;
 }
 
-@keyframes pulse {
+@keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.02); }
 }
 
-#start-button {
+#start-button, #settings-button {
   background: #fff;
   color: #b91c1c; 
-  padding: 10px;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s;
-  width: 60px;
-  height: 60px;
-  margin-right: 20px;
-}
-
-#settings-button {
-  background: #fff;
-  color: #b91c1c; /* Rouge foncé */
   padding: 10px;
   font-size: 1.5rem;
   border: none;
@@ -130,17 +115,17 @@ input {
   width: 100px;
   text-align: center;
   background: rgb(255, 255, 255);
-  color: #b91c1c; /* Rouge foncé */
+  color: #b91c1c; 
   transition: border-color 0.3s;
 }
 
 input:focus {
-  border-color: #b91c1c; /* Rouge foncé */
+  border-color: #b91c1c; 
   outline: none;
 }
 
 button[type="submit"] {
-  background: #b91c1c; /* Rouge foncé */
+  background: #b91c1c; 
   color: #fff;
   padding: 10px 20px;
   font-size: 1.5rem;
@@ -151,11 +136,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #f80101; /* Rouge vif */
-}
-
-button[type="submit"]:active {
-  transform: scale(0.95);
+  background: #f80101; 
 }
 
 .modal {
@@ -181,14 +162,14 @@ button[type="submit"]:active {
 }
 
 .close-button {
-  color: #b91c1c; /* Rouge foncé */
+  color: #b91c1c; 
   font-size: 28px;
   font-weight: bold;
 }
 
 .close-button:hover,
 .close-button:focus {
-  color: #f80101; /* Rouge vif */
+  color: #f80101; 
 }
 
 .modal.show {
