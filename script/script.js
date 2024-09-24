@@ -13,10 +13,9 @@ const DOM = {
   settingsForm: document.getElementById('settings-form'),
   modeContainer: document.getElementById('mode-container'),
   modeIcon: document.getElementById('mode-icon'),
-  prevButton: document.getElementById('prev-button'),
-  nextButton: document.getElementById('next-button'),
-  timerSection: document.getElementById('timer-section'),
-  settingsSection: document.getElementById('settings-section')
+  settingsButton: document.getElementById('settings-button'),
+  modal: document.getElementById('settings-modal'),
+  closeButton: document.querySelector('.close-button')
 };
 
 const DEFAULTS = {
@@ -104,25 +103,6 @@ const resetTimer = () => {
   DOM.timerDisplay.style.backgroundColor = 'red';
 };
 
-let currentSectionIndex = 0;
-const sections = [DOM.timerSection, DOM.settingsSection];
-
-const updateCarousel = () => {
-  sections.forEach((section, index) => {
-    section.style.display = index === currentSectionIndex ? 'block' : 'none';
-  });
-};
-
-DOM.prevButton.addEventListener('click', () => {
-  currentSectionIndex = (currentSectionIndex === 0) ? sections.length - 1 : currentSectionIndex - 1;
-  updateCarousel();
-});
-
-DOM.nextButton.addEventListener('click', () => {
-  currentSectionIndex = (currentSectionIndex + 1) % sections.length;
-  updateCarousel();
-});
-
 DOM.startButton.addEventListener('click', () => {
   isRunning ? resetTimer() : startTimer();
 });
@@ -131,12 +111,27 @@ DOM.settingsForm.addEventListener('submit', (event) => {
   event.preventDefault();
   saveSettings();
   resetTimer();
+  DOM.modal.style.display = 'none';
+});
+
+// Gestion de la modale des paramètres
+DOM.settingsButton.addEventListener('click', () => {
+  DOM.modal.style.display = 'block';
+});
+
+DOM.closeButton.addEventListener('click', () => {
+  DOM.modal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === DOM.modal) {
+    DOM.modal.style.display = 'none';
+  }
 });
 
 const initialize = () => {
   loadSettings();
   resetTimer();
-  updateCarousel();
 };
 
 initialize();
