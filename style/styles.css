@@ -77,7 +77,6 @@ button:active {
   transform: scale(0.95);
 }
 
-
 #settings-button:hover {
   background: rgba(255, 255, 255, 0.8);
   transform: scale(1.05);
@@ -86,8 +85,6 @@ button:active {
 #settings-button:active {
   transform: scale(0.95);
 }
-
-/* Style du formulaire */
 
 form {
   display: flex;
@@ -153,7 +150,6 @@ button[type="submit"]:active {
   transition: all 0.3s;
 }
 
-/* Styles de la modale */
 .modal {
   display: none;
   position: fixed;
@@ -167,7 +163,7 @@ button[type="submit"]:active {
 }
 
 .modal-content {
-  background-color:  linear-gradient(135deg, #f12711, #f5af19);
+  background-color: linear-gradient(135deg, #f12711, #f5af19);
   margin: 15% auto;
   padding: 20px;
   width: 300px;
@@ -187,4 +183,22 @@ button[type="submit"]:active {
   color: #f12711;
   text-decoration: none;
   cursor: pointer;
+}
+
+#timer.critical {
+  animation: heartbeat 0.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal.hide {
+  opacity: 0;
 }

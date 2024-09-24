@@ -20,27 +20,29 @@
         <strong id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></strong>
         <span id="mode-label">Travail</span>
       </div>
+
       <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre">00:00</div>
-      <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre">
+
+      <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre" role="button" tabindex="0">
         <span class="fas fa-play" aria-hidden="true"></span>
       </button>
-      <button id="settings-button" aria-label="Ouvrir les paramètres">
+      <button id="settings-button" aria-label="Ouvrir les paramètres" role="button" tabindex="0">
         <span class="fas fa-cog" aria-hidden="true"></span>
       </button>
     </div>
 
     <!-- Modale pour les paramètres -->
-    <div id="settings-modal" class="modal">
+    <div id="settings-modal" class="modal" aria-hidden="true">
       <div class="modal-content">
         <form id="settings-form">
-          <span class="close-button">&times;</span>  
+          <span class="close-button" role="button" aria-label="Fermer la modale">&times;</span>  
           <label for="work-duration">Durée du travail (minutes):</label>
-          <input type="number" id="work-duration" name="work-duration" min="1" value="25" max="120">
+          <input type="number" id="work-duration" name="work-duration" min="1" value="25" max="120" aria-required="true">
           
           <label for="rest-duration">Durée de la pause (minutes):</label>
-          <input type="number" id="rest-duration" name="rest-duration" min="1" value="5" max="120">
+          <input type="number" id="rest-duration" name="rest-duration" min="1" value="5" max="120" aria-required="true">
           
-          <button type="submit">Enregistrer</button>
+          <button type="submit" aria-label="Enregistrer les paramètres">Enregistrer</button>
         </form>
       </div>
     </div>

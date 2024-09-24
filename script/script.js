@@ -2,6 +2,7 @@ let timer;
 let isRunning = false;
 let isWorkMode = true;
 let timeLeft;
+let totalDuration;
 
 const DOM = {
   timerDisplay: document.getElementById('timer'),
@@ -38,11 +39,9 @@ const formatTime = (seconds) => {
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
 
-  if (hours > 0) {
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-  } else {
-    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-  }
+  return hours > 0
+    ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`
+    : `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 };
 
 const updateTimer = () => DOM.timerDisplay.textContent = formatTime(timeLeft);
@@ -65,7 +64,7 @@ const updateModeDisplay = () => {
   setTimeout(() => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
-    timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
+    timerDisplay.style.backgroundColor = isWorkMode ? '#ff4b1f' : '#4caf50'; // Changer la couleur selon le mode
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 500);
@@ -73,6 +72,7 @@ const updateModeDisplay = () => {
 
 const startTimer = () => {
   timeLeft = getCurrentDuration();
+  DOM.timerDisplay.classList.add('active'); // Ajoute l'animation
 
   timer = setInterval(() => {
     if (timeLeft === 3) {
@@ -100,7 +100,8 @@ const resetTimer = () => {
   timeLeft = getCurrentDuration();
   updateTimer();
   DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
-  DOM.timerDisplay.style.backgroundColor = 'red';
+  DOM.timerDisplay.style.backgroundColor = '#ff4b1f'; // Réinitialise la couleur
+  DOM.timerDisplay.classList.remove('active'); // Retire l'animation
 };
 
 DOM.startButton.addEventListener('click', () => {
@@ -114,7 +115,6 @@ DOM.settingsForm.addEventListener('submit', (event) => {
   DOM.modal.style.display = 'none';
 });
 
-// Gestion de la modale des paramètres
 DOM.settingsButton.addEventListener('click', () => {
   DOM.modal.style.display = 'block';
 });
