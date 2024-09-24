@@ -56,30 +56,45 @@ h1 {
   50% { transform: scale(1.02); }
 }
 
-#start-button, #settings-button {
+#start-button {
   background: #fff;
-  color: #b91c1c; 
+  color: #ff4b1f;
   padding: 10px;
   font-size: 1.5rem;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
-  width: 60px;
-  height: 60px;
+  width: 60px; 
+  height: 60px; 
+  margin-right: 20px; 
+}
+
+#settings-button {
+  background: #fff;
+  color: #ff4b1f;
+  padding: 10px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 60px; 
+  height: 60px; 
 }
 
 #timer-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
 }
 
 #button-container {
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   margin-top: 20px;
 }
+
 
 button:hover {
   background: rgba(255, 255, 255, 0.8);

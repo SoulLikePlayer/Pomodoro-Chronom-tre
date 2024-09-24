@@ -88,6 +88,7 @@ const resetTimer = () => {
   isWorkMode = true;
   timeLeft = getCurrentDuration();
   DOM.timerDisplay.classList.remove('heartbeat');
+  updateModeDisplay();
   updateTimer();
   DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
   DOM.timerDisplay.classList.remove('active');
