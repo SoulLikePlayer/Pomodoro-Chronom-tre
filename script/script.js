@@ -64,7 +64,7 @@ const updateModeDisplay = () => {
   setTimeout(() => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
-    timerDisplay.style.backgroundColor = isWorkMode ? '#ff4b1f' : '#4caf50'; // Changer la couleur selon le mode
+    timerDisplay.style.backgroundColor = isWorkMode ? '#b91c1c' : '#4caf50'; // Changer la couleur selon le mode
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 500);
@@ -120,7 +120,7 @@ const resetTimer = () => {
   timeLeft = getCurrentDuration();
   updateTimer();
   DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
-  DOM.timerDisplay.style.backgroundColor = '#ff4b1f'; // Réinitialise la couleur
+  DOM.timerDisplay.style.backgroundColor = '#b91c1c'; 
   DOM.timerDisplay.classList.remove('active'); // Retire l'animation
   resetStyles(); // Réinitialise les styles
 };
