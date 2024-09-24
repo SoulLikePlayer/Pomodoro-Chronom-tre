@@ -185,14 +185,16 @@ button[type="submit"]:active {
   cursor: pointer;
 }
 
-#timer.critical {
-  animation: heartbeat 0.5s infinite;
+.timerDisplay.heartbeat {
+  animation: heartbeat 0.2s infinite; /* Sera utilisé pour accélérer */
 }
 
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
+
+
 
 .modal.show {
   display: block;

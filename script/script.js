@@ -79,11 +79,25 @@ const startTimer = () => {
       DOM.workSound.play();
     }
 
+    // Vérifier si nous sommes à la moitié du temps
+    if (timeLeft === Math.floor(getCurrentDuration() / 2)) {
+      DOM.timerDisplay.classList.add('critical'); // Ajoute un battement
+      DOM.timerDisplay.style.animationDuration = '0.5s'; // Ralentit le battement
+    }
+
+    // Vérifier si nous sommes dans les 5 dernières secondes
+    if (timeLeft <= 5) {
+      DOM.timerDisplay.style.color = timeLeft % 2 === 0 ? '#ffea00' : '#ffffff'; // Changer en jaune
+      DOM.timerDisplay.classList.add('heartbeat'); // Ajoute une animation de battement
+      DOM.timerDisplay.style.animationDuration = '0.2s'; // Accélère le battement
+    }
+
     if (timeLeft > 0) {
       timeLeft--;
       updateTimer();
     } else {
       clearInterval(timer);
+      resetStyles(); // Réinitialise les styles avant de changer de mode
       switchMode();
       startTimer();
     }
@@ -91,6 +105,12 @@ const startTimer = () => {
 
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
+};
+
+const resetStyles = () => {
+  DOM.timerDisplay.classList.remove('heartbeat'); // Retire l'animation de battement
+  DOM.timerDisplay.style.animationDuration = '1s'; // Réinitialise la durée d'animation
+  DOM.timerDisplay.style.color = '#ffffff'; // Réinitialise la couleur du texte
 };
 
 const resetTimer = () => {
@@ -102,6 +122,7 @@ const resetTimer = () => {
   DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
   DOM.timerDisplay.style.backgroundColor = '#ff4b1f'; // Réinitialise la couleur
   DOM.timerDisplay.classList.remove('active'); // Retire l'animation
+  resetStyles(); // Réinitialise les styles
 };
 
 DOM.startButton.addEventListener('click', () => {
