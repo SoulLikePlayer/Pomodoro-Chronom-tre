@@ -21,7 +21,7 @@ const DOM = {
 };
 
 const DEFAULTS = {
-  workDuration: 25,  
+  workDuration: 25,
   restDuration: 5
 };
 
@@ -75,6 +75,13 @@ const updateModeDisplay = () => {
 
 const startTimer = () => {
   timeLeft = getCurrentDuration();
+
+  if (isWorkMode) {
+    setTimeout(() => {
+      DOM.workSound.play();
+    }, (timeLeft - 3) * 1000);
+  }
+
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -85,6 +92,7 @@ const startTimer = () => {
       startTimer();
     }
   }, 1000);
+
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
 };

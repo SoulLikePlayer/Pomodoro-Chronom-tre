@@ -34,15 +34,15 @@ h1 {
 }
 
 #timer {
-  width: 300px;
-  height: 300px;
-  border: 10px solid #fff;
+  width: 22.786vw;
+  height: 22.786vw;
+  border: 0.651vw solid #fff;
   border-radius: 50%;
   background: #ff4b1f;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem !important;
+  font-size: 4.167vw !important;
   margin-bottom: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   transition: background-color 0.5s, transform 0.5s;
@@ -171,20 +171,4 @@ button[type="submit"]:active {
 
 #prev-button:active, #next-button:active {
   transform: scale(0.95) translateY(-50%);
-}
-
-@media (max-width: 600px) {
-  #timer {
-    width: 200px;
-    height: 200px;
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 601px) {
-  #timer {
-    width: 350px;
-    height: 350px;
-    font-size: 6rem;
-  }
 }
