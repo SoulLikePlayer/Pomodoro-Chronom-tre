@@ -25,7 +25,7 @@ h1 {
   align-items: center;
   margin-bottom: 20px;
   font-size: 1.5rem;
-  transition: opacity 0.5s;
+  transition: color 0.5s ease; /* Transition pour la couleur du texte */
 }
 
 #mode-icon {
@@ -38,13 +38,14 @@ h1 {
   height: 22.786vw;
   border: 0.651vw solid #fff;
   border-radius: 50%;
-  background: #b91c1c;
+  background: #b91c1c; /* Couleur par défaut pour le travail */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4.167vw !important;
   margin-bottom: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.5s ease, color 0.5s ease; /* Transition pour le fond et la couleur du texte */
 }
 
 .heartbeat {
