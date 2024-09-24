@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Pomodoro Timer - Un minuteur pour améliorer la productivité avec des cycles de travail et de pause.">
   <title>TIMER POMODORO</title>
+  <link rel="preload" href="style/styles.css" as="style">
   <link rel="stylesheet" href="style/styles.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -15,7 +18,7 @@
   </header>
 
   <main>
-    <div id="timer-section">
+    <section id="timer-section">
       <div id="mode-container" role="alert" aria-live="assertive">
         <strong id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></strong>
         <span id="mode-label">Travail</span>
@@ -30,7 +33,7 @@
             <span class="fas fa-cog" aria-hidden="true"></span>
         </button>
       </div>  
-    </div>
+    </section>
 
     <!-- Modale pour les paramètres -->
     <div id="settings-modal" class="modal" aria-hidden="true">

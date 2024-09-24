@@ -24,8 +24,11 @@ const DEFAULTS = {
 };
 
 const loadSettings = () => {
-  DOM.workDurationInput.value = localStorage.getItem('workDuration') || DEFAULTS.workDuration;
-  DOM.restDurationInput.value = localStorage.getItem('restDuration') || DEFAULTS.restDuration;
+  const workDuration = localStorage.getItem('workDuration') || DEFAULTS.workDuration;
+  const restDuration = localStorage.getItem('restDuration') || DEFAULTS.restDuration;
+  
+  DOM.workDurationInput.value = workDuration;
+  DOM.restDurationInput.value = restDuration;
 };
 
 const saveSettings = () => {
@@ -34,12 +37,14 @@ const saveSettings = () => {
 };
 
 const formatTime = (seconds) => {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+  const minutes = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const remainingSeconds = String(seconds % 60).padStart(2, '0');
+  return `${minutes}:${remainingSeconds}`;
 };
 
-const updateTimer = () => DOM.timerDisplay.textContent = formatTime(timeLeft);
+const updateTimer = () => {
+  DOM.timerDisplay.textContent = formatTime(timeLeft);
+};
 
 const getCurrentDuration = () => {
   return (isWorkMode ? DOM.workDurationInput.value : DOM.restDurationInput.value) * 60;
@@ -55,9 +60,11 @@ const switchMode = () => {
 const updateModeDisplay = () => {
   const { modeContainer, modeIcon } = DOM;
   modeContainer.classList.toggle('fade-out');
+
   setTimeout(() => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
+    DOM.timerDisplay.style.backgroundColor = isWorkMode ? '#b91c1c' : 'green';
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 500);
@@ -65,8 +72,8 @@ const updateModeDisplay = () => {
 
 const startTimer = () => {
   timeLeft = getCurrentDuration();
-  DOM.timerDisplay.classList.add('active');
-  DOM.timerDisplay.classList.add('heartbeat');
+  DOM.timerDisplay.classList.add('active', 'heartbeat');
+  
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -78,6 +85,7 @@ const startTimer = () => {
       startTimer();
     }
   }, 1000);
+
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
 };
