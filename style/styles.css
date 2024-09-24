@@ -77,6 +77,18 @@ button:active {
   transform: scale(0.95);
 }
 
+
+#settings-button:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+#settings-button:active {
+  transform: scale(0.95);
+}
+
+/* Style du formulaire */
+
 form {
   display: flex;
   flex-direction: column;
@@ -101,7 +113,7 @@ input {
   border: 2px solid #fff;
   width: 100px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgb(255, 255, 255);
   color: #ff4b1f;
   transition: border-color 0.3s;
 }
@@ -141,15 +153,6 @@ button[type="submit"]:active {
   transition: all 0.3s;
 }
 
-#settings-button:hover {
-  background: rgba(255, 255, 255, 0.8);
-  transform: scale(1.05);
-}
-
-#settings-button:active {
-  transform: scale(0.95);
-}
-
 /* Styles de la modale */
 .modal {
   display: none;
@@ -167,22 +170,21 @@ button[type="submit"]:active {
   background-color:  linear-gradient(135deg, #f12711, #f5af19);
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 300px;
   border-radius: 10px;
   color: #000;
+  border: 1px solid transparent; 
 }
 
 .close-button {
-  color: #aaa;
-  float: right;
+  color: #ff4b1f;
   font-size: 28px;
   font-weight: bold;
 }
 
 .close-button:hover,
 .close-button:focus {
-  color: black;
+  color: #f12711;
   text-decoration: none;
   cursor: pointer;
 }
