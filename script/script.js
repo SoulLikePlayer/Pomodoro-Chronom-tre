@@ -66,6 +66,11 @@ const updateModeDisplay = () => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
     timerDisplay.style.backgroundColor = isWorkMode ? '#b91c1c' : 'green'; 
+     if (isWorkMode) {
+      document.body.style.background = 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)';
+    } else {
+      document.body.style.background = 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)'; // Dégradé vers le vert
+    }
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 500);
