@@ -8,7 +8,6 @@ const DOM = {
   startButton: document.getElementById('start-button'),
   modeLabel: document.getElementById('mode-label'),
   workSound: document.getElementById('work-sound'),
-  restSound: document.getElementById('rest-sound'),
   workDurationInput: document.getElementById('work-duration'),
   restDurationInput: document.getElementById('rest-duration'),
   settingsForm: document.getElementById('settings-form'),
@@ -68,7 +67,7 @@ const updateModeDisplay = () => {
     DOM.modeLabel.textContent = isWorkMode ? 'Travail' : 'Repos';
     modeIcon.className = isWorkMode ? 'fas fa-briefcase' : 'fas fa-bed';
     timerDisplay.style.backgroundColor = isWorkMode ? 'red' : 'green';
-    (isWorkMode ? DOM.workSound : DOM.restSound).play();
+    DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 500);
 };
@@ -76,13 +75,11 @@ const updateModeDisplay = () => {
 const startTimer = () => {
   timeLeft = getCurrentDuration();
 
-  if (isWorkMode) {
-    setTimeout(() => {
-      DOM.workSound.play();
-    }, (timeLeft - 3) * 1000);
-  }
-
   timer = setInterval(() => {
+    if (timeLeft === 3) {
+      DOM.workSound.play();
+    }
+
     if (timeLeft > 0) {
       timeLeft--;
       updateTimer();
