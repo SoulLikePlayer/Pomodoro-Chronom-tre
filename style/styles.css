@@ -129,7 +129,6 @@ label {
   margin-bottom: 8px;
   font-size: 1rem;
   color: #fff;
-  text-align: center;
 }
 
 input {
@@ -159,9 +158,6 @@ button[type="submit"] {
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
-  width: 80%;
-  max-width: 300px;
-  vertical-align: middle !important;
 }
 
 button[type="submit"]:hover {
@@ -178,9 +174,6 @@ button[type="submit"]:hover {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
-  display: flex; 
-  justify-content: center;
-  align-items: center;
 }
 
 .modal-content {
@@ -192,7 +185,6 @@ button[type="submit"]:hover {
   max-width: 500px;
   border-radius: 20px;
   text-align: center;
-  position: relative;
 }
 
 .close-button {
@@ -204,12 +196,6 @@ button[type="submit"]:hover {
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
-}
-
-#settings-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 @media screen and (max-width: 1200px) {
