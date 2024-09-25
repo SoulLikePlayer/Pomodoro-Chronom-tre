@@ -1,30 +1,41 @@
 # Pomodoro Timer
+## Lien du site 🌐
+https://soullikeplayer.github.io/PomodoroChrono/
+
 ## Présentation
 
 Le Pomodoro Timer est une application web conçue pour améliorer la productivité à l'aide de la technique Pomodoro, qui consiste à travailler par intervalles, entrecoupés de pauses. Ce projet a été réalisé dans le cadre du TP1.2 de ma deuxième année d'études universitaires.
 
-## Auteur
-
+## Auteur 
+### Etudiant ✏️
 Louis Lazare
+
+### Developpeur 🧑‍💻
 Pseudo GitHub : SoulLikePlayer
 
 ## Fonctionnalités :
 
-    - Chronomètre pour le mode travail (modifiable)
-    - Chronomètre pour le mode repos (modifiable)
-    - Sons d'alerte pour le changement de mode
-    - Interface utilisateur intuitive et réactive
-    - Stockage des paramètres dans le localStorage pour une utilisation persistante
+    ✅ Chronomètre pour le mode travail (modifiable)
+
+    ✅ Chronomètre pour le mode repos (modifiable)
+
+    ✅ Sons d'alerte pour le changement de mode
+
+    ✅ Interface utilisateur intuitive et réactive
+
+    ✅ Stockage des paramètres dans le localStorage pour une utilisation  persistante
+
+    🚨NOUVELLES FONCTIONNALITES DANS LA BRANCHE BONUS🚨
 
 ## Technologies utilisées :
 
     - HTML5
-    - CSS3
+    - CSS3 🎨
     - JavaScript
     - Font Awesome pour les icônes
     - Google Fonts pour la typographie
 
-## Installation
+## Installation 🚀
 
     - Clonez le dépôt :
 
