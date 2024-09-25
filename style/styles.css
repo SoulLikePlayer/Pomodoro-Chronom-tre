@@ -73,9 +73,10 @@ button {
   transition: all 0.3s;
   width: 60px;
   height: 60px;
+  height: 60px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; 
+  align-items: center; 
 }
 
 #start-button {
@@ -207,14 +208,14 @@ button[type="submit"]:hover {
   }
 
   #timer {
-    width: 35vw;
-    height: 35vw;
+    width: 25vw;
+    height: 25vw;
     font-size: 4.5vw;
   }
 
   button {
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
   }
 }
 
@@ -224,14 +225,14 @@ button[type="submit"]:hover {
   }
 
   #timer {
-    width: 40vw;
-    height: 40vw;
+    width: 30vw;
+    height: 30vw;
     font-size: 5vw;
   }
 
   button {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -241,14 +242,14 @@ button[type="submit"]:hover {
   }
 
   #timer {
-    width: 45vw;
-    height: 45vw;
+    width: 35vw;
+    height: 35vw;
     font-size: 6vw;
   }
 
   button {
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     font-size: 1rem;
   }
 }
@@ -261,16 +262,16 @@ button[type="submit"]:hover {
   #timer {
     width: 50vw;
     height: 50vw;
-    font-size: 7vw;
+    font-size: 6vw;
   }
 
   button {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 0.9rem;
   }
 
   input {
-    width: 80px;
+    width: 80px; /* Ajustement pour petits écrans */
   }
 }
