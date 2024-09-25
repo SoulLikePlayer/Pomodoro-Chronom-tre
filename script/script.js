@@ -55,7 +55,9 @@ const switchMode = () => {
   isWorkMode = !isWorkMode;
   timeLeft = getCurrentDuration();
   updateModeDisplay();
-  updateTimer();
+  setTimeout(() => {
+    updateTimer();
+  }, 1000);  
 };
 
 const updateModeDisplay = () => {
@@ -73,7 +75,7 @@ const updateModeDisplay = () => {
     }
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
-  }, 500);
+  }, 1);
 };
 
 const startTimer = () => {
@@ -95,7 +97,7 @@ const startTimer = () => {
       switchMode();
       startTimer();
     }
-  }, 1000); 
+  }, 100); 
 
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
