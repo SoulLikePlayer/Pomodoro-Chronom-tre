@@ -1,4 +1,7 @@
 # Pomodoro Timer
+## Lien du site
+https://soullikeplayer.github.io/PomodoroChrono/
+
 ## Présentation
 
 Le Pomodoro Timer est une application web conçue pour améliorer la productivité à l'aide de la technique Pomodoro, qui consiste à travailler par intervalles, entrecoupés de pauses. Ce projet a été réalisé dans le cadre du TP1.2 de ma deuxième année d'études universitaires.

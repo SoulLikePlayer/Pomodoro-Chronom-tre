@@ -69,7 +69,7 @@ const updateModeDisplay = () => {
      if (isWorkMode) {
       document.body.style.background = 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)';
     } else {
-      document.body.style.background = 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)'; // Dégradé vers le vert
+      document.body.style.background = 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)';
     }
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
@@ -108,12 +108,15 @@ const resetTimer = () => {
   timeLeft = getCurrentDuration();
   DOM.timerDisplay.classList.remove('heartbeat'); 
   updateTimer();
-  DOM.startButton.innerHTML = '<strong class="fas fa-play" aria-hidden="true"></strong>';
-  DOM.timerDisplay.style.backgroundColor = '#b91c1c'; 
 };
 
 DOM.startButton.addEventListener('click', () => {
-  isRunning ? resetTimer() : startTimer();
+  if (isRunning){
+    location.reload();
+    resetTimer();
+  } else {
+    startTimer();
+  }
 });
 
 DOM.settingsForm.addEventListener('submit', (event) => {
