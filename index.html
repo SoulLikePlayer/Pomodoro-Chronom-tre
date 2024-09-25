@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Pomodoro Timer - Un minuteur pour améliorer la productivité avec des cycles de travail et de pause.">
   <title>TIMER POMODORO</title>
-  <link rel="preload" href="style/styles.css" as="style">
   <link rel="stylesheet" href="style/styles.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -20,17 +17,21 @@
   <main>
     <section id="timer-section">
       <div id="mode-container" role="alert" aria-live="assertive">
-        <strong id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></strong>
+        <span id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></span>
         <span id="mode-label">Travail</span>
       </div>
 
       <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre">00:00</div>
+
       <div id="button-container">
-        <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre" role="button" tabindex="0">
-            <span class="fas fa-play" aria-hidden="true"></span>
+        <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre" role="button">
+          <span class="fas fa-play" aria-hidden="true"></span>
+          <span class="sr-only">Démarrer</span>
         </button>
-        <button id="settings-button" aria-label="Ouvrir les paramètres" role="button" tabindex="0">
-            <span class="fas fa-cog" aria-hidden="true"></span>
+
+        <button id="settings-button" aria-label="Ouvrir les paramètres" role="button">
+          <span class="fas fa-cog" aria-hidden="true"></span>
+          <span class="sr-only">Paramètres</span>
         </button>
       </div>  
     </section>
@@ -39,14 +40,18 @@
     <div id="settings-modal" class="modal" aria-hidden="true">
       <div class="modal-content">
         <form id="settings-form">
-          <span class="close-button" role="button" aria-label="Fermer la modale">&times;</span>  
+          <button type="button" class="close-button" aria-label="Fermer la modale">&times;</button>
+
           <label for="work-duration">Durée du travail (minutes):</label>
           <input type="number" id="work-duration" name="work-duration" min="1" value="25" max="120" aria-required="true">
           
           <label for="rest-duration">Durée de la pause (minutes):</label>
           <input type="number" id="rest-duration" name="rest-duration" min="1" value="5" max="120" aria-required="true">
           
-          <button type="submit" aria-label="Enregistrer les paramètres" class="fa-solid fa-floppy-disk"/>
+          <button type="submit" aria-label="Enregistrer les paramètres" class="save-button">
+            <span class="fas fa-save" aria-hidden="true"></span>
+            <span class="sr-only">Enregistrer</span>
+          </button>
         </form>
       </div>
     </div>
