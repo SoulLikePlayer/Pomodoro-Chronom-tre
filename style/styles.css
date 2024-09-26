@@ -73,7 +73,6 @@ button {
   transition: all 0.3s;
   width: 60px;
   height: 60px;
-  height: 60px;
   display: flex;
   justify-content: center; 
   align-items: center; 
@@ -86,7 +85,6 @@ button {
 #stat-button {
   margin-left: 20px;
 }
-
 
 #timer-section {
   display: flex;
@@ -196,6 +194,17 @@ button[type="submit"]:hover {
   text-align: center;
 }
 
+.modalStat-content {
+  background: linear-gradient(45deg, #b91c1c, #e57373);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 20px;
+  text-align: center;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -277,6 +286,6 @@ button[type="submit"]:hover {
   }
 
   input {
-    width: 80px; /* Ajustement pour petits écrans */
+    width: 80px;
   }
 }

@@ -28,7 +28,10 @@ const DOM = {
   modeIcon: document.getElementById('mode-icon'),
   settingsButton: document.getElementById('settings-button'),
   modal: document.getElementById('settings-modal'),
-  closeButton: document.querySelector('.close-button')
+  closeButton: document.querySelector('.close-button'),
+  statsModal :  document.getElementById('stats-modal'),
+  statButton : document.getElementById('stat-button'),
+  statsCloseButton : document.querySelector('.stats-close-button')
 };
 
 /**
@@ -59,6 +62,53 @@ const saveSettings = () => {
   localStorage.setItem('restDuration', DOM.restDurationInput.value);
   localStorage.setItem('longRestDuration', DOM.longRestDurationInput.value);
 };
+
+// Initialiser les cycles dans le localStorage
+const initializeCycleStats = () => {
+  if (!localStorage.getItem('workCycles')) {
+    localStorage.setItem('workCycles', 0);
+  }
+  if (!localStorage.getItem('restCycles')) {
+    localStorage.setItem('restCycles', 0);
+  }
+  if (!localStorage.getItem('longRestCycles')) {
+    localStorage.setItem('longRestCycles', 0);
+  }
+  if (!localStorage.getItem('totalCycles')) {
+    localStorage.setItem('totalCycles', 0);
+  }
+};
+
+// Mettre à jour les cycles dans le localStorage
+const updateCycleStats = (type) => {
+  let workCycles = parseInt(localStorage.getItem('workCycles')) || 0;
+  let restCycles = parseInt(localStorage.getItem('restCycles')) || 0;
+  let longRestCycles = parseInt(localStorage.getItem('longRestCycles')) || 0;
+  let totalCycles = parseInt(localStorage.getItem('totalCycles')) || 0;
+
+  if (type === 'work') {
+    workCycles++;
+    localStorage.setItem('workCycles', workCycles);
+  } else if (type === 'rest') {
+    restCycles++;
+    localStorage.setItem('restCycles', restCycles);
+  } else if (type === 'longRest') {
+    longRestCycles++;
+    localStorage.setItem('longRestCycles', longRestCycles);
+  }
+
+  totalCycles++;
+  localStorage.setItem('totalCycles', totalCycles);
+};
+
+// Charger et afficher les statistiques dans la modale
+const loadCycleStats = () => {
+  document.getElementById('total-work-cycles').textContent = `Cycles de travail : ${localStorage.getItem('workCycles') || 0}`;
+  document.getElementById('total-rest-cycles').textContent = `Cycles de repos : ${localStorage.getItem('restCycles') || 0}`;
+  document.getElementById('total-long-rest-cycles').textContent = `Cycles de grande pause : ${localStorage.getItem('longRestCycles') || 0}`;
+  document.getElementById('total-cycles').textContent = `Total de cycles : ${localStorage.getItem('totalCycles') || 0}`;
+};
+
 
 /**
  * Formate le temps en secondes sous forme de chaîne en format MM:SS ou HH:MM:SS.
@@ -103,7 +153,14 @@ const getCurrentDuration = () => {
  */
 const switchMode = () => {
   if (isWorkMode) {
-    workCycleCount++; 
+    workCycleCount++;
+    updateCycleStats('work');  // Incrémenter le nombre de cycles de travail
+  } else {
+    if (workCycleCount < 4) {
+      updateCycleStats('rest');  // Incrémenter le nombre de cycles de repos
+    } else {
+      updateCycleStats('longRest');  // Incrémenter le nombre de cycles de grande pause
+    }
   }
   isWorkMode = !isWorkMode;
   timeLeft = getCurrentDuration();
@@ -174,7 +231,7 @@ const startTimer = () => {
       switchMode();
       startTimer();
     }
-  }, 1000); // Le minuteur se met à jour toutes les 100 millisecondes
+  }, 1000); // Le minuteur se met à jour toutes les 1000 millisecondes
 
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
@@ -227,6 +284,20 @@ window.addEventListener('click', (event) => {
   if (event.target === DOM.modal) {
     DOM.modal.style.display = 'none';
   }
+  if (event.target === DOM.statsModal) {
+    DOM.statsModal.style.display = 'none';
+  }
+});
+
+
+// Ouvrir le modal des statistiques
+DOM.statButton.addEventListener('click', () => {
+  loadCycleStats();
+  DOM.statsModal.style.display = 'block';
+});
+
+DOM.statsCloseButton.addEventListener('click', () => {
+  DOM.statsModal.style.display = 'none';
 });
 
 /**
@@ -236,6 +307,7 @@ const initialize = () => {
   loadSettings();
   resetTimer();
 };
+
 
 // Démarre l'application
 initialize();

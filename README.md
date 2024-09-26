@@ -35,6 +35,8 @@ Pseudo GitHub : SoulLikePlayer
 
     ✅ Stockage des paramètres dans le localStorage pour une utilisation  persistante
 
+    ✅ Analyse et Statistique des cycles effecuté
+
 ## Technologies utilisées :
 
     - HTML5
