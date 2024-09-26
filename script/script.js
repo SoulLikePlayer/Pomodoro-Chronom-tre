@@ -10,6 +10,7 @@ let isRunning = false;
 let isWorkMode = true;
 let timeLeft;
 let workCycleCount = 0;
+let pomodoroChart;
 
 /**
  * Éléments DOM utilisés dans l'application
@@ -44,6 +45,54 @@ const DEFAULTS = {
   longRestDuration: 15
 };
 
+
+const createPieChart = () => {
+        const ctx = document.getElementById('pomodoroChart').getContext('2d');
+
+        const data = {
+            labels: ['Travail', 'Repos', 'Grande Pause'],
+            datasets: [{
+                label: 'Nombre de cycle',
+                data: [
+                    localStorage.getItem('workCycles') || 0, 
+                    localStorage.getItem('restCycles') || 0, 
+                    localStorage.getItem('longRestCycles') || 0
+                ],
+                backgroundColor: ['#b91c1c', '#4caf50', '#2196F3'],
+                hoverOffset: 4
+            }]
+        };
+
+        if (pomodoroChart) {
+            pomodoroChart.destroy();
+        }
+
+        pomodoroChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+            }
+        });
+    };
+
+    createPieChart();
+
+    DOM.settingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        createPieChart();
+    });
+// Met à jour le diagramme lorsque les paramètres changent
+DOM.settingsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  saveSettings();  // Enregistre les nouvelles valeurs
+  createPieChart();  // Met à jour le chart
+});
 
 /**
  * Charge les paramètres à partir du stockage local et initialise les champs de durée.

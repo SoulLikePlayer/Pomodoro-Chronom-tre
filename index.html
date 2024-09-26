@@ -82,6 +82,10 @@
                 <p id="total-rest-cycles">Cycles de repos : 0</p>
                 <p id="total-long-rest-cycles">Cycles de grande pause : 0</p>
                 <p id="total-cycles">Total de cycles : 0</p>
+
+                <div id="chart-container"></div>
+                    <canvas id="pomodoroChart" aria-label="Diagramme Camembert des Durées" role="img"></canvas>
+                </div>
             </div>
         </div>
 
@@ -89,6 +93,7 @@
 
     <audio id="work-sound" src="sound/start.wav" preload="auto" aria-hidden="true"></audio>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script/script.js"></script>
 </body>
 </html>
