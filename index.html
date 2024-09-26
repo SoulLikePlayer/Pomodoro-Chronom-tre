@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pomodoro Timer - Un minuteur pour améliorer la productivité avec des cycles de travail et de pause.">
+  <title>TIMER POMODORO</title>
+  <link rel="stylesheet" href="style/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header role="banner">
+      <h1>TIMER POMODORO</h1>
+  </header>
+
+  <main role="main">
+      <section id="timer-section">
+      <div id="mode-container" role="alert" aria-live="assertive">
+          <span id="mode-icon" class="fas fa-briefcase" aria-hidden="true"></span>
+          <span id="mode-label" aria-label="Mode actuel">Travail</span>
+      </div>
+
+      <div id="timer" aria-live="polite" role="timer" aria-label="Chronomètre">00:00</div>
+
+      <div id="button-container">
+          <button id="start-button" aria-label="Démarrer ou réinitialiser le chronomètre" role="button">
+            <span class="fas fa-play" aria-hidden="true"></span>
+            <span class="sr-only">Démarrer</span>
+          </button>
+
+          <button id="settings-button" aria-label="Ouvrir les paramètres" role="button">
+            <span class="fas fa-cog" aria-hidden="true"></span>
+            <span class="sr-only">Paramètres</span>
+          </button>
+
+          <button id="stat-button" aria-label="Ouvrir les statistique" role="button">
+            <span class="fa-regular fa-chart-bar"></span>
+            <span class="sr-only">statistique</span>
+          </button>
+      </div>
+      </section>
+
+      <div id="settings-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <div class="modal-content">
+          <h2 id="modalTitle" class="sr-only">Paramètres du Timer</h2>
+          <p id="modalDescription" class="sr-only">Modifiez la durée de travail, de pause, et la grande pause.</p>
+          <form id="settings-form">
+          <button type="button" class="close-button modal-button" aria-label="Fermer la modale">&times;</button>
+
+          <label for="work-duration">Durée du travail (minutes):</label>
+          <input type="number" id="work-duration" name="work-duration" min="1" value="25" max="120" aria-required="true" aria-describedby="work-duration-description">
+          <small id="work-duration-description" class="sr-only">Durée en minutes pour le travail.</small>
+          
+          <label for="rest-duration">Durée de la pause (minutes):</label>
+          <input type="number" id="rest-duration" name="rest-duration" min="1" value="5" max="120" aria-required="true" aria-describedby="rest-duration-description">
+          <small id="rest-duration-description" class="sr-only">Durée en minutes pour la pause.</small>
+
+          <label for="long-rest-duration">Durée de la grande pause (minutes):</label>
+          <input type="number" id="long-rest-duration" name="long-rest-duration" min="1" value="15" max="60" aria-required="true" aria-describedby="long-rest-duration-description">
+          <small id="long-rest-duration-description" class="sr-only">Durée en minutes pour la grande pause après 4 cycles de travail.</small>
+
+          <button type="submit" aria-label="Enregistrer les paramètres" class="save-button" role="button">
+              <span class="fas fa-save" aria-hidden="true"></span>
+              <span class="sr-only">Enregistrer</span>
+          </button>
+          </form>
+      </div>
+      </div>
+  </main>
+
+  <audio id="work-sound" src="sound/start.wav" preload="auto" aria-hidden="true"></audio>
+
+  <script src="script/script.js"></script>
+</body>
+</html>
