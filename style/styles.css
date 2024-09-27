@@ -82,8 +82,16 @@ button {
   margin-right: 20px;
 }
 
+#settings-button{
+    margin-right: 10px;
+}
+
 #stat-button {
-  margin-left: 20px;
+  margin-left: 10px;
+}
+
+#reset-stats-button{
+    margin-left: 20px;
 }
 
 #timer-section {

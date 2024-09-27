@@ -32,7 +32,8 @@ const DOM = {
   closeButton: document.querySelector('.close-button'),
   statsModal :  document.getElementById('stats-modal'),
   statButton : document.getElementById('stat-button'),
-  statsCloseButton : document.querySelector('.stats-close-button')
+  statsCloseButton : document.querySelector('.stats-close-button'),
+  resetStatsButton : document.getElementById('reset-stats-button')
 };
 
 /**
@@ -209,6 +210,7 @@ const switchMode = () => {
       updateCycleStats('rest');  // Incrémenter le nombre de cycles de repos
     } else {
       updateCycleStats('longRest');  // Incrémenter le nombre de cycles de grande pause
+      workCycleCount = 0;
     }
   }
 
@@ -283,7 +285,7 @@ const startTimer = () => {
       switchMode();
       startTimer();
     }
-  }, 1000); // Le minuteur se met à jour toutes les 1000 millisecondes
+  }, 100); // Le minuteur se met à jour toutes les 1000 millisecondes
 
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
@@ -351,6 +353,17 @@ DOM.statButton.addEventListener('click', () => {
 DOM.statsCloseButton.addEventListener('click', () => {
   DOM.statsModal.style.display = 'none';
 });
+
+DOM.resetStatsButton.addEventListener('click', () => {
+    if (confirm("Voulez-vous vraiment réinitialiser toutes les statistiques ?")) {
+      localStorage.clear();
+      alert("Les statistiques ont été réinitialisées !");
+      loadCycleStats();
+      createPieChart();
+      location.reload();
+    }
+  }
+)
 
 /**
  * Initialise l'application en chargeant les paramètres et en réinitialisant le minuteur.
