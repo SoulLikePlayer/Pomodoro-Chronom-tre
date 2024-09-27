@@ -25,6 +25,8 @@ const DOM = {
   modeIcon: document.getElementById('mode-icon'),           // Icône représentant le mode actuel
   settingsButton: document.getElementById('settings-button'), // Bouton pour ouvrir le modal des paramètres
   modal: document.getElementById('settings-modal'),         // Modal pour les paramètres
+  modalContent: document.querySelector('.modal-content'),    // Contener du modal
+  SaveButton : document.querySelector('.save-button'),
   closeButton: document.querySelector('.close-button')      // Bouton pour fermer le modal des paramètres
 };
 
@@ -112,6 +114,14 @@ const updateModeDisplay = () => {
       ? 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)' 
       : 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)';
 
+    DOM.modalContent.style.background = isWorkMode 
+      ? 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)' 
+      : 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)';  
+
+    DOM.SaveButton.style.background = isWorkMode 
+      ? '#b91c1c' 
+      : '#4caf50';    
+
     DOM.workSound.play();
     modeContainer.classList.toggle('fade-in');
   }, 1);
@@ -170,6 +180,7 @@ DOM.startButton.addEventListener('click', () => {
 DOM.settingsForm.addEventListener('submit', (event) => {
   event.preventDefault();
   saveSettings();
+  location.reload();
   resetTimer();
   DOM.modal.style.display = 'none';
 });
