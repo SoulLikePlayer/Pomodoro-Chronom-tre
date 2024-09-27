@@ -211,6 +211,9 @@ const switchMode = () => {
       updateCycleStats('longRest');  // Incrémenter le nombre de cycles de grande pause
     }
   }
+
+  createPieChart();
+
   isWorkMode = !isWorkMode;
   timeLeft = getCurrentDuration();
   updateModeDisplay();
