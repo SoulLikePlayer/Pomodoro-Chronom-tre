@@ -29,8 +29,11 @@ const DOM = {
   modeIcon: document.getElementById('mode-icon'),
   settingsButton: document.getElementById('settings-button'),
   modal: document.getElementById('settings-modal'),
+  SaveButton : document.querySelector('.save-button'),
   closeButton: document.querySelector('.close-button'),
+  modalContent: document.querySelector('.modal-content'),
   statsModal :  document.getElementById('stats-modal'),
+  statModalContent : document.querySelector('.modalStat-content'),
   statButton : document.getElementById('stat-button'),
   statsCloseButton : document.querySelector('.stats-close-button'),
   resetStatsButton : document.getElementById('reset-stats-button')
@@ -240,6 +243,24 @@ const updateModeDisplay = () => {
       : (workCycleCount < 4
         ? 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)'
         : 'linear-gradient(45deg, #2196F3, #42a5f5, #64b5f6, #90caf9)');
+
+    DOM.modalContent.style.background = isWorkMode 
+      ? 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)' 
+      : (workCycleCount < 4
+        ? 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)'
+        : 'linear-gradient(45deg, #2196F3, #42a5f5, #64b5f6, #90caf9)'); 
+
+    DOM.statModalContent.style.background = isWorkMode 
+      ? 'linear-gradient(45deg, #b91c1c, #c62828, #d32f2f, #e57373)' 
+      : (workCycleCount < 4
+        ? 'linear-gradient(45deg, #4caf50, #66bb6a, #81c784, #a5d6a7)'
+        : 'linear-gradient(45deg, #2196F3, #42a5f5, #64b5f6, #90caf9)');
+
+    DOM.SaveButton.style.background = isWorkMode 
+      ? '#b91c1c' 
+      : (workCycleCount < 4
+        ? '#4caf50'
+        : '#2196F3');        
     DOM.workSound.play();
     sendNotification(isWorkMode ? 'Temps de travail !' : (workCycleCount < 4 ? 'Temps de repos !' : 'Temps de grande pause !'));
     modeContainer.classList.toggle('fade-in');
@@ -320,6 +341,7 @@ DOM.settingsForm.addEventListener('submit', (event) => {
   event.preventDefault();
   saveSettings();
   resetTimer();
+  location.reload();
   DOM.modal.style.display = 'none';
 });
 
