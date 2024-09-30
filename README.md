@@ -26,13 +26,19 @@ Ce projet a été réalisé dans le cadre du TP1.2 de ma deuxième année d'étu
 
 ## 🌟 Fonctionnalités
 
-    ✅ **Chronomètre travail** : entièrement personnalisable pour adapter les sessions à votre rythme.  
-    ✅ **Chronomètre repos** : ajustable selon vos besoins. 
-    ✅ **Chronomètre Grande Pause** : ajustable selon vos besoins.
-    ✅ **Sons d'alerte** : notification sonore lors du changement de mode (travail/repos).  
-    ✅ **Interface intuitive** : design clair et réactif pour une expérience utilisateur optimale. 
-    ✅ **Sauvegarde des paramètres** : vos réglages sont conservés grâce au localStorage pour une utilisation persistante.
-    ✅ **Analyse et Statistique** : analyse des cycles effecuté
+   ✅ **Chronomètre travail** : entièrement personnalisable pour adapter les sessions à votre rythme.  
+   
+   ✅ **Chronomètre repos** : ajustable selon vos besoins. 
+   
+   ✅ **Chronomètre Grande Pause** : ajustable selon vos besoins.
+   
+   ✅ **Sons d'alerte** : notification sonore lors du changement de mode (travail/repos).  
+   
+   ✅ **Interface intuitive** : design clair et réactif pour une expérience utilisateur optimale. 
+   
+   ✅ **Sauvegarde des paramètres** : vos réglages sont conservés grâce au localStorage pour une utilisation persistante.
+   
+   ✅ **Analyse et Statistique** : analyse des cycles effecuté
 
 ---
 ## 🛠️ Technologies utilisées
