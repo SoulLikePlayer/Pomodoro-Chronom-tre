@@ -53,6 +53,15 @@ h1 {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+.heartbeat {
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
 button {
   background: #fff;
   color: #ff4b1f;
