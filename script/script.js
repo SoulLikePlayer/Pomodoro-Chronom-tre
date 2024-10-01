@@ -306,7 +306,7 @@ const startTimer = () => {
       switchMode();
       startTimer();
     }
-  }, 100); // Le minuteur se met à jour toutes les 1000 millisecondes
+  }, 1000); // Le minuteur se met à jour toutes les 1000 millisecondes
 
   DOM.startButton.innerHTML = '<strong class="fas fa-redo" aria-hidden="true"></strong>';
   isRunning = true;
